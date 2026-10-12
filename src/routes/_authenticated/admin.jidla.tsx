@@ -9,7 +9,7 @@ function Dishes() {
   if (!cats) return <Loader2 className="animate-spin" />;
   return <CrudManager table="menu_items" title="Jídla" singular="jídlo" categoryKey="category_id" categories={cats} featuredKey="is_featured"
     defaults={{ name: '', description: '', price: '', price_note: null, category_id: '', portion: '', image_path: null, allergens: [], is_vegetarian: false, is_featured: false, is_active: true }}
-    summary={r => `${r.price_note || `${r.price} Kč`}${r.portion ? ` · ${r.portion}` : ''}`}
+    summary={r => `${r['price_note'] || `${r.price} Kč`}${r.portion ? ` · ${r.portion}` : ''}`}
     fields={[
       { key: 'name', label: 'Název', type: 'text', required: true },
       { key: 'category_id', label: 'Kategorie', type: 'select', options: cats, required: true },
