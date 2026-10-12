@@ -10,17 +10,39 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DenniMenuRouteImport } from './routes/denni-menu'
 import { Route as GalerieRouteImport } from './routes/galerie'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as ONasRouteImport } from './routes/o-nas'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RezervaceRouteImport } from './routes/rezervace'
 import { Route as SpecialniNabidkaRouteImport } from './routes/specialni-nabidka'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminJidlaRouteImport } from './routes/_authenticated/admin.jidla'
+import { Route as AuthenticatedAdminKategorieJidelRouteImport } from './routes/_authenticated/admin.kategorie-jidel'
+import { Route as AuthenticatedAdminKategorieNapojuRouteImport } from './routes/_authenticated/admin.kategorie-napoju'
+import { Route as AuthenticatedAdminNabidkyRouteImport } from './routes/_authenticated/admin.nabidky'
+import { Route as AuthenticatedAdminNapojeRouteImport } from './routes/_authenticated/admin.napoje'
+import { Route as AuthenticatedAdminObsahRouteImport } from './routes/_authenticated/admin.obsah'
+import { Route as AuthenticatedAdminTydenniMenuRouteImport } from './routes/_authenticated/admin.tydenni-menu'
+import { Route as AuthenticatedAdminUzivateleRouteImport } from './routes/_authenticated/admin.uzivatele'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DenniMenuRoute = DenniMenuRouteImport.update({
@@ -48,6 +70,11 @@ const ONasRoute = ONasRouteImport.update({
   path: '/o-nas',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RezervaceRoute = RezervaceRouteImport.update({
   id: '/rezervace',
   path: '/rezervace',
@@ -58,78 +85,209 @@ const SpecialniNabidkaRoute = SpecialniNabidkaRouteImport.update({
   path: '/specialni-nabidka',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminJidlaRoute = AuthenticatedAdminJidlaRouteImport.update({
+  id: '/jidla',
+  path: '/jidla',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminKategorieJidelRoute =
+  AuthenticatedAdminKategorieJidelRouteImport.update({
+    id: '/kategorie-jidel',
+    path: '/kategorie-jidel',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminKategorieNapojuRoute =
+  AuthenticatedAdminKategorieNapojuRouteImport.update({
+    id: '/kategorie-napoju',
+    path: '/kategorie-napoju',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminNabidkyRoute =
+  AuthenticatedAdminNabidkyRouteImport.update({
+    id: '/nabidky',
+    path: '/nabidky',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminNapojeRoute =
+  AuthenticatedAdminNapojeRouteImport.update({
+    id: '/napoje',
+    path: '/napoje',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminObsahRoute = AuthenticatedAdminObsahRouteImport.update({
+  id: '/obsah',
+  path: '/obsah',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminTydenniMenuRoute =
+  AuthenticatedAdminTydenniMenuRouteImport.update({
+    id: '/tydenni-menu',
+    path: '/tydenni-menu',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminUzivateleRoute =
+  AuthenticatedAdminUzivateleRouteImport.update({
+    id: '/uzivatele',
+    path: '/uzivatele',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/denni-menu': typeof DenniMenuRoute
   '/galerie': typeof GalerieRoute
   '/kontakt': typeof KontaktRoute
   '/menu': typeof MenuRoute
   '/o-nas': typeof ONasRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/rezervace': typeof RezervaceRoute
   '/specialni-nabidka': typeof SpecialniNabidkaRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/jidla': typeof AuthenticatedAdminJidlaRoute
+  '/admin/kategorie-jidel': typeof AuthenticatedAdminKategorieJidelRoute
+  '/admin/kategorie-napoju': typeof AuthenticatedAdminKategorieNapojuRoute
+  '/admin/nabidky': typeof AuthenticatedAdminNabidkyRoute
+  '/admin/napoje': typeof AuthenticatedAdminNapojeRoute
+  '/admin/obsah': typeof AuthenticatedAdminObsahRoute
+  '/admin/tydenni-menu': typeof AuthenticatedAdminTydenniMenuRoute
+  '/admin/uzivatele': typeof AuthenticatedAdminUzivateleRoute
+  '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/denni-menu': typeof DenniMenuRoute
   '/galerie': typeof GalerieRoute
   '/kontakt': typeof KontaktRoute
   '/menu': typeof MenuRoute
   '/o-nas': typeof ONasRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/rezervace': typeof RezervaceRoute
   '/specialni-nabidka': typeof SpecialniNabidkaRoute
+  '/admin/jidla': typeof AuthenticatedAdminJidlaRoute
+  '/admin/kategorie-jidel': typeof AuthenticatedAdminKategorieJidelRoute
+  '/admin/kategorie-napoju': typeof AuthenticatedAdminKategorieNapojuRoute
+  '/admin/nabidky': typeof AuthenticatedAdminNabidkyRoute
+  '/admin/napoje': typeof AuthenticatedAdminNapojeRoute
+  '/admin/obsah': typeof AuthenticatedAdminObsahRoute
+  '/admin/tydenni-menu': typeof AuthenticatedAdminTydenniMenuRoute
+  '/admin/uzivatele': typeof AuthenticatedAdminUzivateleRoute
+  '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/denni-menu': typeof DenniMenuRoute
   '/galerie': typeof GalerieRoute
   '/kontakt': typeof KontaktRoute
   '/menu': typeof MenuRoute
   '/o-nas': typeof ONasRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/rezervace': typeof RezervaceRoute
   '/specialni-nabidka': typeof SpecialniNabidkaRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/admin/jidla': typeof AuthenticatedAdminJidlaRoute
+  '/_authenticated/admin/kategorie-jidel': typeof AuthenticatedAdminKategorieJidelRoute
+  '/_authenticated/admin/kategorie-napoju': typeof AuthenticatedAdminKategorieNapojuRoute
+  '/_authenticated/admin/nabidky': typeof AuthenticatedAdminNabidkyRoute
+  '/_authenticated/admin/napoje': typeof AuthenticatedAdminNapojeRoute
+  '/_authenticated/admin/obsah': typeof AuthenticatedAdminObsahRoute
+  '/_authenticated/admin/tydenni-menu': typeof AuthenticatedAdminTydenniMenuRoute
+  '/_authenticated/admin/uzivatele': typeof AuthenticatedAdminUzivateleRoute
+  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/denni-menu'
     | '/galerie'
     | '/kontakt'
     | '/menu'
     | '/o-nas'
+    | '/reset-password'
     | '/rezervace'
     | '/specialni-nabidka'
+    | '/admin'
+    | '/admin/jidla'
+    | '/admin/kategorie-jidel'
+    | '/admin/kategorie-napoju'
+    | '/admin/nabidky'
+    | '/admin/napoje'
+    | '/admin/obsah'
+    | '/admin/tydenni-menu'
+    | '/admin/uzivatele'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/denni-menu'
     | '/galerie'
     | '/kontakt'
     | '/menu'
     | '/o-nas'
+    | '/reset-password'
     | '/rezervace'
     | '/specialni-nabidka'
+    | '/admin/jidla'
+    | '/admin/kategorie-jidel'
+    | '/admin/kategorie-napoju'
+    | '/admin/nabidky'
+    | '/admin/napoje'
+    | '/admin/obsah'
+    | '/admin/tydenni-menu'
+    | '/admin/uzivatele'
+    | '/admin'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/auth'
     | '/denni-menu'
     | '/galerie'
     | '/kontakt'
     | '/menu'
     | '/o-nas'
+    | '/reset-password'
     | '/rezervace'
     | '/specialni-nabidka'
+    | '/_authenticated/admin'
+    | '/_authenticated/admin/jidla'
+    | '/_authenticated/admin/kategorie-jidel'
+    | '/_authenticated/admin/kategorie-napoju'
+    | '/_authenticated/admin/nabidky'
+    | '/_authenticated/admin/napoje'
+    | '/_authenticated/admin/obsah'
+    | '/_authenticated/admin/tydenni-menu'
+    | '/_authenticated/admin/uzivatele'
+    | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
   DenniMenuRoute: typeof DenniMenuRoute
   GalerieRoute: typeof GalerieRoute
   KontaktRoute: typeof KontaktRoute
   MenuRoute: typeof MenuRoute
   ONasRoute: typeof ONasRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   RezervaceRoute: typeof RezervaceRoute
   SpecialniNabidkaRoute: typeof SpecialniNabidkaRoute
 }
@@ -141,6 +299,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/denni-menu': {
@@ -178,6 +350,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ONasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/rezervace': {
       id: '/rezervace'
       path: '/rezervace'
@@ -192,16 +371,128 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpecialniNabidkaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin/': {
+      id: '/_authenticated/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/jidla': {
+      id: '/_authenticated/admin/jidla'
+      path: '/jidla'
+      fullPath: '/admin/jidla'
+      preLoaderRoute: typeof AuthenticatedAdminJidlaRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/kategorie-jidel': {
+      id: '/_authenticated/admin/kategorie-jidel'
+      path: '/kategorie-jidel'
+      fullPath: '/admin/kategorie-jidel'
+      preLoaderRoute: typeof AuthenticatedAdminKategorieJidelRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/kategorie-napoju': {
+      id: '/_authenticated/admin/kategorie-napoju'
+      path: '/kategorie-napoju'
+      fullPath: '/admin/kategorie-napoju'
+      preLoaderRoute: typeof AuthenticatedAdminKategorieNapojuRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/nabidky': {
+      id: '/_authenticated/admin/nabidky'
+      path: '/nabidky'
+      fullPath: '/admin/nabidky'
+      preLoaderRoute: typeof AuthenticatedAdminNabidkyRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/napoje': {
+      id: '/_authenticated/admin/napoje'
+      path: '/napoje'
+      fullPath: '/admin/napoje'
+      preLoaderRoute: typeof AuthenticatedAdminNapojeRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/obsah': {
+      id: '/_authenticated/admin/obsah'
+      path: '/obsah'
+      fullPath: '/admin/obsah'
+      preLoaderRoute: typeof AuthenticatedAdminObsahRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/tydenni-menu': {
+      id: '/_authenticated/admin/tydenni-menu'
+      path: '/tydenni-menu'
+      fullPath: '/admin/tydenni-menu'
+      preLoaderRoute: typeof AuthenticatedAdminTydenniMenuRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/uzivatele': {
+      id: '/_authenticated/admin/uzivatele'
+      path: '/uzivatele'
+      fullPath: '/admin/uzivatele'
+      preLoaderRoute: typeof AuthenticatedAdminUzivateleRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
+interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminJidlaRoute: typeof AuthenticatedAdminJidlaRoute
+  AuthenticatedAdminKategorieJidelRoute: typeof AuthenticatedAdminKategorieJidelRoute
+  AuthenticatedAdminKategorieNapojuRoute: typeof AuthenticatedAdminKategorieNapojuRoute
+  AuthenticatedAdminNabidkyRoute: typeof AuthenticatedAdminNabidkyRoute
+  AuthenticatedAdminNapojeRoute: typeof AuthenticatedAdminNapojeRoute
+  AuthenticatedAdminObsahRoute: typeof AuthenticatedAdminObsahRoute
+  AuthenticatedAdminTydenniMenuRoute: typeof AuthenticatedAdminTydenniMenuRoute
+  AuthenticatedAdminUzivateleRoute: typeof AuthenticatedAdminUzivateleRoute
+  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminJidlaRoute: AuthenticatedAdminJidlaRoute,
+  AuthenticatedAdminKategorieJidelRoute: AuthenticatedAdminKategorieJidelRoute,
+  AuthenticatedAdminKategorieNapojuRoute:
+    AuthenticatedAdminKategorieNapojuRoute,
+  AuthenticatedAdminNabidkyRoute: AuthenticatedAdminNabidkyRoute,
+  AuthenticatedAdminNapojeRoute: AuthenticatedAdminNapojeRoute,
+  AuthenticatedAdminObsahRoute: AuthenticatedAdminObsahRoute,
+  AuthenticatedAdminTydenniMenuRoute: AuthenticatedAdminTydenniMenuRoute,
+  AuthenticatedAdminUzivateleRoute: AuthenticatedAdminUzivateleRoute,
+  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
   DenniMenuRoute: DenniMenuRoute,
   GalerieRoute: GalerieRoute,
   KontaktRoute: KontaktRoute,
   MenuRoute: MenuRoute,
   ONasRoute: ONasRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   RezervaceRoute: RezervaceRoute,
   SpecialniNabidkaRoute: SpecialniNabidkaRoute,
 }
