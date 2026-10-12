@@ -96,7 +96,7 @@ export function CrudManager({ table, title, singular, fields, categoryKey, categ
       if ((f.type === 'text' || f.type === 'date' || f.type === 'textarea') && f.nullable && v === '') v = null;
       payload[f.key] = v ?? (f.type === 'switch' ? false : f.type === 'allergens' ? [] : f.nullable || f.type === 'image' ? null : '');
     }
-    payload.sort_order = editing.sort_order ?? 0;
+    payload['sort_order'] = editing['sort_order'] ?? 0;
     setSaving(true);
     const res = original ? await from(table).update(payload).eq('id', original.id) : await from(table).insert(payload);
     setSaving(false);

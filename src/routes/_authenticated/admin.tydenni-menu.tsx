@@ -16,7 +16,7 @@ import type { Database } from '@/integrations/supabase/types';
 export const Route = createFileRoute('/_authenticated/admin/tydenni-menu')({ component: WeeklyAdmin });
 
 type Menu = Database['public']['Tables']['weekly_menus']['Row'];
-type Dish = { id?: string; weekday: number; kind: 'soup' | 'main'; name: string; description: string; price: string; allergens: number[]; sort_order: number };
+type Dish = { id?: string | undefined; weekday: number; kind: 'soup' | 'main'; name: string; description: string; price: string; allergens: number[]; sort_order: number };
 const DAYS = ['Pondělí', 'Úterý', 'Středa', 'Čtvrtek', 'Pátek'];
 
 function status(m: Menu, today: string) {
@@ -49,7 +49,7 @@ function WeeklyAdmin() {
   }
   function create() { const mon = nextMonday(); setEdit({ menu: { title: '', valid_from: mon, valid_to: addDays(mon, 4), note: '', is_published: false }, dishes: [] }); }
 
-  async function save() {
+  async function save(): Promise<void> {
     if (!edit) return;
     const { menu, dishes } = edit;
     if (!menu.valid_from || !menu.valid_to) return toast.error('Vyplňte platnost menu.');
