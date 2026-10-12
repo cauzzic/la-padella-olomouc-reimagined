@@ -5,9 +5,9 @@ import tiramisu from '@/assets/tiramisu.jpg';
 import { toISODate } from './rules';
 import type { MenuCategory, MenuItem, Offer, WeeklyMenu, WeeklyMenuDish, Weekday } from './types';
 
-export const seedCategories: MenuCategory[] = [
+export const seedCategories: MenuCategory[] = ([
   ['predkrmy', 'Předkrmy'], ['pizza', 'Pizza'], ['testoviny', 'Těstoviny'], ['hlavni', 'Hlavní chody'], ['dezerty', 'Dezerty'], ['napoje', 'Nápoje'],
-].map(([id, name], i) => ({ id, name, sort_order: i, is_active: true }));
+] as [string, string][]).map(([id, name], i) => ({ id, name, sort_order: i, is_active: true }));
 
 type Row = [id: string, cat: string, name: string, desc: string, price: number, allergens: number[], portion: string, veg?: boolean, image?: string, featured?: boolean];
 const rows: Row[] = [
