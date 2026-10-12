@@ -84,7 +84,7 @@ export const getSettings = createServerFn({ method: 'GET' }).handler(async (): P
   const client = db();
   const { data, error } = await client.from('site_settings').select('key,value');
   if (error) fail('site_settings', error);
-  const s: SiteSettings = Object.fromEntries(data.map(r => [r.key, r.value]));
+  const s = Object.fromEntries(data.map(r => [r.key, r.value])) as SiteSettings;
   const urls = await sign(client, SETTINGS_IMAGE_KEYS.map(k => s[k]));
   for (const k of SETTINGS_IMAGE_KEYS) s[k] = s[k] ? urls.get(s[k]!) ?? '' : '';
   return s;

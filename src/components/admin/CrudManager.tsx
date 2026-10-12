@@ -12,7 +12,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { AllergenField, ImageField } from './fields';
 import { releaseImage, useSignedUrl } from './media';
 
-export type Row = Record<string, unknown> & { id: string; sort_order: number };
+export type Row = Record<string, unknown> & { id: string; sort_order: number; name?: string; title?: string; description?: string | null; brand?: string | null; is_active?: boolean; price?: number | null; portion?: string | null; volume?: string | null; valid_from?: string | null; valid_to?: string | null };
 export type Field = {
   key: string; label: string;
   type: 'text' | 'textarea' | 'number' | 'switch' | 'select' | 'allergens' | 'image' | 'date';
