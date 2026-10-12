@@ -8,6 +8,13 @@
       "when": 1791831741868,
       "tag": "0000_olomouc_content_schema",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791835074143,
+      "tag": "0001_menu_items_price_note",
+      "breakpoints": true
     }
   ]
 }

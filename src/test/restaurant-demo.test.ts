@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { pickActiveOffers, pickCurrentWeeklyMenu, pickFeatured, groupMenu, groupDrinks, parseHours, todayPrague } from '@/content/rules';
 import type { MenuItem, Offer, WeeklyMenu } from '@/content/types';
-const item = (o: Partial<MenuItem>): MenuItem => ({ id: 'x', category_id: 'pizza', name: 'x', description: '', price: 1, image_url: null, allergens: [], portion: null, is_vegetarian: false, is_featured: false, sort_order: 0, is_active: true, ...o });
+const item = (o: Partial<MenuItem>): MenuItem => ({ id: 'x', category_id: 'pizza', name: 'x', description: '', price: 1, price_note: null, image_url: null, allergens: [], portion: null, is_vegetarian: false, is_featured: false, sort_order: 0, is_active: true, ...o });
 const week = (from: string, to: string, pub = true): WeeklyMenu => ({ id: from, valid_from: from, valid_to: to, note: null, is_published: pub, dishes: [] });
 const offer = (o: Partial<Offer>): Offer => ({ id: 'x', title: 'x', label: null, description: '', price: null, image_url: null, valid_from: null, valid_to: null, is_active: true, sort_order: 0, ...o });
 describe('content rules', () => {

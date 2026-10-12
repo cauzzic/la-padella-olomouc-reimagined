@@ -10,6 +10,7 @@ export type MenuItem = {
   name: string;
   description: string;
   price: number;
+  price_note: string | null;
   image_url: string | null;
   allergens: number[];
   portion: string | null;
