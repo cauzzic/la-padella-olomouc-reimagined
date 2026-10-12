@@ -31,7 +31,8 @@ export function pickFeatured(items: MenuItem[], limit = 4): MenuItem[] {
   return items.filter(i => i.is_active && i.is_featured).sort(bySort).slice(0, limit);
 }
 
-/** Only a published menu whose window contains today counts as current; expired or future menus are never shown. */
+/** Only a published menu whose window contains today counts as current; expired or future menus are never shown.
+ *  Overlaps: latest start wins; on equal start the input order (most recently edited first) wins. */
 export function pickCurrentWeeklyMenu(menus: WeeklyMenu[], today: ISODate): WeeklyMenu | null {
   return menus.filter(m => m.is_published && isWithin(today, m.valid_from, m.valid_to))
     .sort((a, b) => b.valid_from.localeCompare(a.valid_from))[0] ?? null;

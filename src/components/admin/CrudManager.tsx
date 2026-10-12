@@ -12,7 +12,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { AllergenField, ImageField } from './fields';
 import { releaseImage, useSignedUrl } from './media';
 
-export type Row = Record<string, unknown> & { id: string; sort_order: number };
+export type Row = Record<string, unknown> & { id: string; sort_order: number; name?: string; title?: string; description?: string | null; brand?: string | null; is_active?: boolean; price?: number | null; portion?: string | null; volume?: string | null; valid_from?: string | null; valid_to?: string | null };
 export type Field = {
   key: string; label: string;
   type: 'text' | 'textarea' | 'number' | 'switch' | 'select' | 'allergens' | 'image' | 'date';
@@ -96,7 +96,7 @@ export function CrudManager({ table, title, singular, fields, categoryKey, categ
       if ((f.type === 'text' || f.type === 'date' || f.type === 'textarea') && f.nullable && v === '') v = null;
       payload[f.key] = v ?? (f.type === 'switch' ? false : f.type === 'allergens' ? [] : f.nullable || f.type === 'image' ? null : '');
     }
-    payload.sort_order = editing.sort_order ?? 0;
+    payload['sort_order'] = editing['sort_order'] ?? 0;
     setSaving(true);
     const res = original ? await from(table).update(payload).eq('id', original.id) : await from(table).insert(payload);
     setSaving(false);
@@ -120,7 +120,7 @@ export function CrudManager({ table, title, singular, fields, categoryKey, categ
 
   return <div>
     <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-      <h1 className="font-serif text-3xl">{title}</h1>
+      <h1 className="font-display text-3xl">{title}</h1>
       <Button onClick={openNew}><Plus />Přidat {singular}</Button>
     </div>
     <div className="flex flex-wrap gap-3 mb-4">

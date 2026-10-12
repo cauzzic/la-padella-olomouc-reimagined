@@ -32,4 +32,5 @@ export type Offer = { id: string; title: string; label: string | null; descripti
 export type CategoryWithItems = MenuCategory & { items: MenuItem[] };
 
 /** Editable site texts/contacts. Image keys hold resolved URLs on the public side. */
-export type SiteSettings = Record<string, string>;
+export const SETTING_KEYS = ['topbar_text','announcement','announcement_active','hero_eyebrow','hero_title','hero_title_accent','hero_text','hero_image','lunch_title','lunch_text','lunch_image','address','address_note','phone','email','instagram_url','opening_hours','lunch_hours','contact_text'] as const;
+export type SiteSettings = { [K in (typeof SETTING_KEYS)[number]]?: string };

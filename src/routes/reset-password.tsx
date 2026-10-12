@@ -16,15 +16,15 @@ function ResetPassword() {
   const [password, setPassword] = useState('');
   async function submit(e: FormEvent) {
     e.preventDefault();
-    if (password.length < 8) return toast.error('Heslo musí mít alespoň 8 znaků.');
+    if (password.length < 8) { toast.error('Heslo musí mít alespoň 8 znaků.'); return; }
     const { error } = await supabase.auth.updateUser({ password });
-    if (error) return toast.error('Odkaz vypršel. Požádejte o nový.');
+    if (error) { toast.error('Odkaz vypršel. Požádejte o nový.'); return; }
     toast.success('Heslo bylo změněno.');
     navigate({ to: '/admin', replace: true });
   }
   return <div className="min-h-screen flex items-center justify-center bg-muted px-4">
     <form onSubmit={submit} className="w-full max-w-sm rounded-lg border bg-card p-8 grid gap-4">
-      <h1 className="font-serif text-2xl">Nové heslo</h1>
+      <h1 className="font-display text-2xl">Nové heslo</h1>
       <div className="grid gap-1.5"><Label htmlFor="pw">Nové heslo</Label><Input id="pw" type="password" autoComplete="new-password" value={password} onChange={e => setPassword(e.target.value)} /></div>
       <Button type="submit">Uložit heslo</Button>
     </form>

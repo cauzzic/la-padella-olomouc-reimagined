@@ -64,7 +64,7 @@ export const getDrinks = createServerFn({ method: 'GET' }).handler(async () => {
 export const getCurrentWeeklyMenu = createServerFn({ method: 'GET' }).handler(async (): Promise<WeeklyMenu | null> => {
   const client = db();
   const today = todayPrague();
-  const { data, error } = await client.from('weekly_menus').select('*, weekly_menu_dishes(*)').eq('is_published', true).lte('valid_from', today).gte('valid_to', today);
+  const { data, error } = await client.from('weekly_menus').select('*, weekly_menu_dishes(*)').eq('is_published', true).lte('valid_from', today).gte('valid_to', today).order('updated_at', { ascending: false });
   if (error) fail('weekly_menus', error);
   const menus: WeeklyMenu[] = data.map(m => ({ id: m.id, title: m.title, valid_from: m.valid_from, valid_to: m.valid_to, note: m.note, is_published: m.is_published,
     dishes: m.weekly_menu_dishes.map(d => ({ id: d.id, weekday: d.weekday, kind: d.kind, name: d.name, description: d.description, price: d.price == null ? null : Number(d.price), allergens: d.allergens, sort_order: d.sort_order }) as WeeklyMenuDish) }));
@@ -84,7 +84,7 @@ export const getSettings = createServerFn({ method: 'GET' }).handler(async (): P
   const client = db();
   const { data, error } = await client.from('site_settings').select('key,value');
   if (error) fail('site_settings', error);
-  const s: SiteSettings = Object.fromEntries(data.map(r => [r.key, r.value]));
+  const s = Object.fromEntries(data.map(r => [r.key, r.value])) as SiteSettings;
   const urls = await sign(client, SETTINGS_IMAGE_KEYS.map(k => s[k]));
   for (const k of SETTINGS_IMAGE_KEYS) s[k] = s[k] ? urls.get(s[k]!) ?? '' : '';
   return s;

@@ -50,20 +50,20 @@ function ContentAdmin() {
   async function save() {
     if (!orig) return;
     const changed = Object.entries(vals).filter(([k, v]) => orig[k] !== v).map(([key, value]) => ({ key, value }));
-    if (!changed.length) return toast.info('Žádné změny.');
+    if (!changed.length) { toast.info('Žádné změny.'); return; }
     setSaving(true);
     const { error } = await supabase.from('site_settings').upsert(changed);
     setSaving(false);
-    if (error) return toast.error('Uložení se nezdařilo.');
+    if (error) { toast.error('Uložení se nezdařilo.'); return; }
     for (const f of groups.flatMap(g => g.fields)) if (f.type === 'image' && orig[f.key] !== vals[f.key]) await releaseImage(orig[f.key]);
     setOrig({ ...vals }); toast.success('Obsah webu uložen.');
   }
   if (!orig) return <Loader2 className="animate-spin" />;
   const set = (k: string, v: string) => setVals(s => ({ ...s, [k]: v }));
   return <div>
-    <h1 className="font-serif text-3xl mb-6">Obsah webu</h1>
+    <h1 className="font-display text-3xl mb-6">Obsah webu</h1>
     {groups.map(g => <section key={g.title} className="rounded-lg border bg-card p-5 mb-5 grid gap-4">
-      <h2 className="font-serif text-xl">{g.title}</h2>
+      <h2 className="font-display text-xl">{g.title}</h2>
       {g.fields.map(f => <div key={f.key} className={f.type === 'switch' ? 'flex items-center justify-between' : 'grid gap-1.5'}>
         <Label htmlFor={`s-${f.key}`}>{f.label}</Label>
         {f.type === 'switch' ? <Switch id={`s-${f.key}`} checked={vals[f.key] === 'true'} onCheckedChange={v => set(f.key, v ? 'true' : 'false')} />
