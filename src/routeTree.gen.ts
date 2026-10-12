@@ -27,6 +27,9 @@ import { Route as AuthenticatedAdminKategorieJidelRouteImport } from './routes/_
 import { Route as AuthenticatedAdminKategorieNapojuRouteImport } from './routes/_authenticated/admin.kategorie-napoju'
 import { Route as AuthenticatedAdminNabidkyRouteImport } from './routes/_authenticated/admin.nabidky'
 import { Route as AuthenticatedAdminNapojeRouteImport } from './routes/_authenticated/admin.napoje'
+import { Route as AuthenticatedAdminObsahRouteImport } from './routes/_authenticated/admin.obsah'
+import { Route as AuthenticatedAdminTydenniMenuRouteImport } from './routes/_authenticated/admin.tydenni-menu'
+import { Route as AuthenticatedAdminUzivateleRouteImport } from './routes/_authenticated/admin.uzivatele'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -121,6 +124,23 @@ const AuthenticatedAdminNapojeRoute =
     path: '/napoje',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
+const AuthenticatedAdminObsahRoute = AuthenticatedAdminObsahRouteImport.update({
+  id: '/obsah',
+  path: '/obsah',
+  getParentRoute: () => AuthenticatedAdminRoute,
+} as any)
+const AuthenticatedAdminTydenniMenuRoute =
+  AuthenticatedAdminTydenniMenuRouteImport.update({
+    id: '/tydenni-menu',
+    path: '/tydenni-menu',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminUzivateleRoute =
+  AuthenticatedAdminUzivateleRouteImport.update({
+    id: '/uzivatele',
+    path: '/uzivatele',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -139,6 +159,9 @@ export interface FileRoutesByFullPath {
   '/admin/kategorie-napoju': typeof AuthenticatedAdminKategorieNapojuRoute
   '/admin/nabidky': typeof AuthenticatedAdminNabidkyRoute
   '/admin/napoje': typeof AuthenticatedAdminNapojeRoute
+  '/admin/obsah': typeof AuthenticatedAdminObsahRoute
+  '/admin/tydenni-menu': typeof AuthenticatedAdminTydenniMenuRoute
+  '/admin/uzivatele': typeof AuthenticatedAdminUzivateleRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -157,6 +180,9 @@ export interface FileRoutesByTo {
   '/admin/kategorie-napoju': typeof AuthenticatedAdminKategorieNapojuRoute
   '/admin/nabidky': typeof AuthenticatedAdminNabidkyRoute
   '/admin/napoje': typeof AuthenticatedAdminNapojeRoute
+  '/admin/obsah': typeof AuthenticatedAdminObsahRoute
+  '/admin/tydenni-menu': typeof AuthenticatedAdminTydenniMenuRoute
+  '/admin/uzivatele': typeof AuthenticatedAdminUzivateleRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -178,6 +204,9 @@ export interface FileRoutesById {
   '/_authenticated/admin/kategorie-napoju': typeof AuthenticatedAdminKategorieNapojuRoute
   '/_authenticated/admin/nabidky': typeof AuthenticatedAdminNabidkyRoute
   '/_authenticated/admin/napoje': typeof AuthenticatedAdminNapojeRoute
+  '/_authenticated/admin/obsah': typeof AuthenticatedAdminObsahRoute
+  '/_authenticated/admin/tydenni-menu': typeof AuthenticatedAdminTydenniMenuRoute
+  '/_authenticated/admin/uzivatele': typeof AuthenticatedAdminUzivateleRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -199,6 +228,9 @@ export interface FileRouteTypes {
     | '/admin/kategorie-napoju'
     | '/admin/nabidky'
     | '/admin/napoje'
+    | '/admin/obsah'
+    | '/admin/tydenni-menu'
+    | '/admin/uzivatele'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -217,6 +249,9 @@ export interface FileRouteTypes {
     | '/admin/kategorie-napoju'
     | '/admin/nabidky'
     | '/admin/napoje'
+    | '/admin/obsah'
+    | '/admin/tydenni-menu'
+    | '/admin/uzivatele'
     | '/admin'
   id:
     | '__root__'
@@ -237,6 +272,9 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/kategorie-napoju'
     | '/_authenticated/admin/nabidky'
     | '/_authenticated/admin/napoje'
+    | '/_authenticated/admin/obsah'
+    | '/_authenticated/admin/tydenni-menu'
+    | '/_authenticated/admin/uzivatele'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -382,6 +420,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminNapojeRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/obsah': {
+      id: '/_authenticated/admin/obsah'
+      path: '/obsah'
+      fullPath: '/admin/obsah'
+      preLoaderRoute: typeof AuthenticatedAdminObsahRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/tydenni-menu': {
+      id: '/_authenticated/admin/tydenni-menu'
+      path: '/tydenni-menu'
+      fullPath: '/admin/tydenni-menu'
+      preLoaderRoute: typeof AuthenticatedAdminTydenniMenuRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/uzivatele': {
+      id: '/_authenticated/admin/uzivatele'
+      path: '/uzivatele'
+      fullPath: '/admin/uzivatele'
+      preLoaderRoute: typeof AuthenticatedAdminUzivateleRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
   }
 }
 
@@ -391,6 +450,9 @@ interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminKategorieNapojuRoute: typeof AuthenticatedAdminKategorieNapojuRoute
   AuthenticatedAdminNabidkyRoute: typeof AuthenticatedAdminNabidkyRoute
   AuthenticatedAdminNapojeRoute: typeof AuthenticatedAdminNapojeRoute
+  AuthenticatedAdminObsahRoute: typeof AuthenticatedAdminObsahRoute
+  AuthenticatedAdminTydenniMenuRoute: typeof AuthenticatedAdminTydenniMenuRoute
+  AuthenticatedAdminUzivateleRoute: typeof AuthenticatedAdminUzivateleRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
@@ -401,6 +463,9 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
     AuthenticatedAdminKategorieNapojuRoute,
   AuthenticatedAdminNabidkyRoute: AuthenticatedAdminNabidkyRoute,
   AuthenticatedAdminNapojeRoute: AuthenticatedAdminNapojeRoute,
+  AuthenticatedAdminObsahRoute: AuthenticatedAdminObsahRoute,
+  AuthenticatedAdminTydenniMenuRoute: AuthenticatedAdminTydenniMenuRoute,
+  AuthenticatedAdminUzivateleRoute: AuthenticatedAdminUzivateleRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
 }
 
