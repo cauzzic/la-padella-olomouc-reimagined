@@ -9,16 +9,16 @@ import type { Drink, DrinkCategory, MenuCategory, MenuItem, Offer, SiteSettings,
 // Server env (Lovable hosting) first; fall back to build-time public values so
 // external hosts (e.g. Netlify) without server env vars still reach the same backend.
 function serverUrl() {
-  const url = process.env['SUPABASE_URL'] || import.meta.env.VITE_SUPABASE_URL || process.env['VITE_SUPABASE_URL'];
+  const url = process.env['SUPABASE_URL'] || import.meta.env['VITE_SUPABASE_URL'] || process.env['VITE_SUPABASE_URL'];
   if (!url) throw new Error('Chybí adresa backendu (SUPABASE_URL / VITE_SUPABASE_URL).');
   return url;
 }
 function publicUrl() {
-  return import.meta.env.VITE_SUPABASE_URL || process.env['VITE_SUPABASE_URL'] || serverUrl();
+  return import.meta.env['VITE_SUPABASE_URL'] || process.env['VITE_SUPABASE_URL'] || serverUrl();
 }
 
 function db() {
-  const key = process.env['SUPABASE_PUBLISHABLE_KEY'] || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env['VITE_SUPABASE_PUBLISHABLE_KEY'];
+  const key = process.env['SUPABASE_PUBLISHABLE_KEY'] || import.meta.env['VITE_SUPABASE_PUBLISHABLE_KEY'] || process.env['VITE_SUPABASE_PUBLISHABLE_KEY'];
   if (!key) throw new Error('Chybí veřejný klíč backendu.');
   return createClient<Database>(serverUrl(), key, {
     auth: { persistSession: false, autoRefreshToken: false, storage: undefined },
