@@ -16,9 +16,9 @@ function ResetPassword() {
   const [password, setPassword] = useState('');
   async function submit(e: FormEvent) {
     e.preventDefault();
-    if (password.length < 8) return toast.error('Heslo musí mít alespoň 8 znaků.');
+    if (password.length < 8) { toast.error('Heslo musí mít alespoň 8 znaků.'); return; }
     const { error } = await supabase.auth.updateUser({ password });
-    if (error) return toast.error('Odkaz vypršel. Požádejte o nový.');
+    if (error) { toast.error('Odkaz vypršel. Požádejte o nový.'); return; }
     toast.success('Heslo bylo změněno.');
     navigate({ to: '/admin', replace: true });
   }

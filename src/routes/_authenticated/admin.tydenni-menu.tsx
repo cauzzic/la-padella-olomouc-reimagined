@@ -52,13 +52,13 @@ function WeeklyAdmin() {
   async function save(): Promise<void> {
     if (!edit) return;
     const { menu, dishes } = edit;
-    if (!menu.valid_from || !menu.valid_to) return toast.error('Vyplňte platnost menu.');
-    if (menu.valid_to < menu.valid_from) return toast.error('Konec platnosti musí být po začátku.');
-    if (dishes.some(d => !d.name.trim())) return toast.error('Každé jídlo musí mít název.');
+    if (!menu.valid_from || !menu.valid_to) { toast.error('Vyplňte platnost menu.'); return; }
+    if (menu.valid_to < menu.valid_from) { toast.error('Konec platnosti musí být po začátku.'); return; }
+    if (dishes.some(d => !d.name.trim())) { toast.error('Každé jídlo musí mít název.'); return; }
     setSaving(true);
     const payload = { title: menu.title ?? '', valid_from: menu.valid_from, valid_to: menu.valid_to, note: menu.note || null, is_published: !!menu.is_published };
     const res = menu.id ? await supabase.from('weekly_menus').update(payload).eq('id', menu.id).select('id').single() : await supabase.from('weekly_menus').insert(payload).select('id').single();
-    if (res.error) { setSaving(false); return toast.error('Uložení menu se nezdařilo.'); }
+    if (res.error) { setSaving(false); { toast.error('Uložení menu se nezdařilo.'); return; } }
     const menuId = res.data.id;
     const keep = dishes.filter(d => d.id).map(d => d.id!);
     let q = supabase.from('weekly_menu_dishes').delete().eq('menu_id', menuId);
@@ -68,14 +68,14 @@ function WeeklyAdmin() {
     const existing = rows.filter(r => 'id' in r); const fresh = rows.filter(r => !('id' in r));
     const [u, n] = await Promise.all([existing.length ? supabase.from('weekly_menu_dishes').upsert(existing) : { error: null }, fresh.length ? supabase.from('weekly_menu_dishes').insert(fresh) : { error: null }]);
     setSaving(false);
-    if (delRes.error || u.error || n.error) return toast.error('Některá jídla se nepodařilo uložit.');
+    if (delRes.error || u.error || n.error) { toast.error('Některá jídla se nepodařilo uložit.'); return; }
     toast.success('Menu uloženo.'); setEdit(null); load();
   }
 
   async function remove(m: Menu) {
     const { error } = await supabase.from('weekly_menus').delete().eq('id', m.id);
     setDel(null);
-    if (error) return toast.error('Smazání se nezdařilo.');
+    if (error) { toast.error('Smazání se nezdařilo.'); return; }
     toast.success('Menu smazáno.'); load();
   }
 

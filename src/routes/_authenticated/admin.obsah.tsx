@@ -50,11 +50,11 @@ function ContentAdmin() {
   async function save() {
     if (!orig) return;
     const changed = Object.entries(vals).filter(([k, v]) => orig[k] !== v).map(([key, value]) => ({ key, value }));
-    if (!changed.length) return toast.info('Žádné změny.');
+    if (!changed.length) { toast.info('Žádné změny.'); return; }
     setSaving(true);
     const { error } = await supabase.from('site_settings').upsert(changed);
     setSaving(false);
-    if (error) return toast.error('Uložení se nezdařilo.');
+    if (error) { toast.error('Uložení se nezdařilo.'); return; }
     for (const f of groups.flatMap(g => g.fields)) if (f.type === 'image' && orig[f.key] !== vals[f.key]) await releaseImage(orig[f.key]);
     setOrig({ ...vals }); toast.success('Obsah webu uložen.');
   }
