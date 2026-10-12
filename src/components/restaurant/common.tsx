@@ -6,7 +6,7 @@ import { formatDate } from '@/content/rules';
 
 export function PageIntro({eyebrow,title,description}:{eyebrow:string;title:string;description:string}) {return <div className="page-intro"><div className="wrap"><div className="eyebrow text-primary">{eyebrow}</div><h1 className="display">{title}</h1><p className="body-copy">{description}</p></div></div>}
 
-export function FoodCard({item}:{item:MenuItem}) {return <article className="food-card"><Link to="/menu" className="block">{item.image_url&&<div className="image-wrap"><img className="food-image" src={item.image_url} alt={item.name} loading="lazy" width={1024} height={1024}/></div>}<h3>{item.name}</h3></Link><p>{item.description}</p><div className="food-meta"><strong>{item.price} Kč</strong><Link to="/menu" aria-label={`Zobrazit ${item.name} v menu`}><ArrowUpRight size={18}/></Link></div></article>}
+export function FoodCard({item}:{item:MenuItem}) {return <article className="food-card"><Link to="/menu" className="block">{item.image_url&&<div className="image-wrap"><img className="food-image" src={item.image_url} alt={item.name} loading="lazy" width={1024} height={1024}/></div>}<h3>{item.name}</h3></Link><p>{item.description}</p><div className="food-meta"><strong>{item.price_note||`${item.price} Kč`}</strong><Link to="/menu" aria-label={`Zobrazit ${item.name} v menu`}><ArrowUpRight size={18}/></Link></div></article>}
 
 const WEEKDAYS = ['Pondělí','Úterý','Středa','Čtvrtek','Pátek'];
 function DishRow({d}:{d:WeeklyMenuDish}) {return <div className="lunch-row"><div className="min-w-0"><h3>{d.name}</h3><p>{d.description}{d.allergens.length>0&&` · Alergeny: ${d.allergens.join(', ')}`}</p></div>{d.price!=null&&<strong>{d.price} Kč</strong>}</div>}
