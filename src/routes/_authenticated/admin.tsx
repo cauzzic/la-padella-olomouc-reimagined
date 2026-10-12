@@ -37,7 +37,7 @@ function AdminLayout() {
     navigate({ to: '/auth', replace: true });
   }
   if (!isStaff) return <div className="min-h-screen flex items-center justify-center bg-muted p-6"><div className="max-w-md rounded-lg border bg-card p-8 text-center grid gap-4">
-    <h1 className="font-serif text-2xl">Nemáte oprávnění</h1>
+    <h1 className="font-display text-2xl">Nemáte oprávnění</h1>
     <p className="text-sm text-muted-foreground">Účet {user.email} zatím nemá přístup do administrace. Požádejte administrátora o přidělení role.</p>
     <Button variant="outline" onClick={signOut}><LogOut />Odhlásit se</Button>
   </div></div>;
@@ -45,7 +45,7 @@ function AdminLayout() {
   const links = [...nav, ...(isAdmin ? [{ to: '/admin/uzivatele', label: 'Uživatelé', icon: Users } as const] : [])];
   return <div className="min-h-screen bg-muted/40 md:flex">
     <aside className={`${open ? 'block' : 'hidden'} md:block md:w-64 md:shrink-0 border-r bg-card md:min-h-screen`}>
-      <div className="p-5 border-b"><Link to="/" className="font-serif text-xl">La Padella<span className="text-primary">.</span></Link><p className="text-xs text-muted-foreground">Administrace · Olomouc</p></div>
+      <div className="p-5 border-b"><Link to="/" className="font-display text-xl">La Padella<span className="text-primary">.</span></Link><p className="text-xs text-muted-foreground">Administrace · Olomouc</p></div>
       <nav className="p-3 grid gap-0.5" aria-label="Administrace">
         {links.map(l => <Link key={l.to} to={l.to} onClick={() => setOpen(false)} activeOptions={{ exact: l.to === '/admin' }} className="flex items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-muted" activeProps={{ className: 'bg-muted font-medium text-primary' }}><l.icon size={16} />{l.label}</Link>)}
       </nav>
@@ -55,7 +55,7 @@ function AdminLayout() {
       </div>
     </aside>
     <div className="flex-1 min-w-0">
-      <div className="md:hidden flex items-center justify-between border-b bg-card p-3"><span className="font-serif">Administrace</span><Button size="icon" variant="ghost" aria-label="Menu administrace" onClick={() => setOpen(!open)}><MenuIcon /></Button></div>
+      <div className="md:hidden flex items-center justify-between border-b bg-card p-3"><span className="font-display">Administrace</span><Button size="icon" variant="ghost" aria-label="Menu administrace" onClick={() => setOpen(!open)}><MenuIcon /></Button></div>
       <main className="p-4 md:p-8 max-w-5xl"><Outlet /></main>
     </div>
   </div>;

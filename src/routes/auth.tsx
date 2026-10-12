@@ -44,7 +44,7 @@ function AuthPage() {
 
   return <div className="min-h-screen flex items-center justify-center bg-muted px-4">
     <form onSubmit={submit} className="w-full max-w-sm rounded-lg border bg-card p-8 shadow-sm grid gap-4">
-      <div><Link to="/" className="font-serif text-2xl">La Padella<span className="text-primary">.</span></Link><p className="text-sm text-muted-foreground mt-1">{mode === 'signin' ? 'Přihlášení do administrace' : mode === 'signup' ? 'Vytvoření účtu' : 'Obnovení hesla'}</p></div>
+      <div><Link to="/" className="font-display text-2xl">La Padella<span className="text-primary">.</span></Link><p className="text-sm text-muted-foreground mt-1">{mode === 'signin' ? 'Přihlášení do administrace' : mode === 'signup' ? 'Vytvoření účtu' : 'Obnovení hesla'}</p></div>
       <div className="grid gap-1.5"><Label htmlFor="email">E-mail</Label><Input id="email" type="email" autoComplete="email" required value={email} onChange={e => setEmail(e.target.value)} /></div>
       {mode !== 'forgot' && <div className="grid gap-1.5"><Label htmlFor="password">Heslo</Label><Input id="password" type="password" autoComplete={mode === 'signup' ? 'new-password' : 'current-password'} required value={password} onChange={e => setPassword(e.target.value)} /></div>}
       {info && <p className="text-sm rounded-md bg-primary/10 p-3">{info}</p>}

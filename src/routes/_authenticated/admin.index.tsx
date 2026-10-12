@@ -21,9 +21,9 @@ function Dashboard() {
     setS({ dishes: it.length, hiddenDishes: it.filter(i => !i.is_active).length, featured: it.filter(i => i.is_featured && i.is_active).length, drinks: drinks.count ?? 0, offers: offers.count ?? 0,
       current: ms.find(m => m.valid_from <= today) ?? null, upcoming: ms.filter(m => m.valid_from > today).length, missingPhotos: it.filter(i => i.is_featured && !i.image_path).map(i => i.name) });
   })(); }, []);
-  const card = (label: string, value: string | number, to: string) => <Link to={to} className="rounded-lg border bg-card p-5 hover:border-primary"><div className="text-xs uppercase tracking-wide text-muted-foreground">{label}</div><div className="font-serif text-3xl mt-1">{value}</div></Link>;
+  const card = (label: string, value: string | number, to: string) => <Link to={to} className="rounded-lg border bg-card p-5 hover:border-primary"><div className="text-xs uppercase tracking-wide text-muted-foreground">{label}</div><div className="font-display text-3xl mt-1">{value}</div></Link>;
   return <div>
-    <h1 className="font-serif text-3xl mb-6">Přehled</h1>
+    <h1 className="font-display text-3xl mb-6">Přehled</h1>
     {!s ? <p className="text-muted-foreground">Načítám…</p> : <>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-8">
         {card('Jídla', `${s.dishes}${s.hiddenDishes ? ` (${s.hiddenDishes} skryto)` : ''}`, '/admin/jidla')}

@@ -61,9 +61,9 @@ function ContentAdmin() {
   if (!orig) return <Loader2 className="animate-spin" />;
   const set = (k: string, v: string) => setVals(s => ({ ...s, [k]: v }));
   return <div>
-    <h1 className="font-serif text-3xl mb-6">Obsah webu</h1>
+    <h1 className="font-display text-3xl mb-6">Obsah webu</h1>
     {groups.map(g => <section key={g.title} className="rounded-lg border bg-card p-5 mb-5 grid gap-4">
-      <h2 className="font-serif text-xl">{g.title}</h2>
+      <h2 className="font-display text-xl">{g.title}</h2>
       {g.fields.map(f => <div key={f.key} className={f.type === 'switch' ? 'flex items-center justify-between' : 'grid gap-1.5'}>
         <Label htmlFor={`s-${f.key}`}>{f.label}</Label>
         {f.type === 'switch' ? <Switch id={`s-${f.key}`} checked={vals[f.key] === 'true'} onCheckedChange={v => set(f.key, v ? 'true' : 'false')} />

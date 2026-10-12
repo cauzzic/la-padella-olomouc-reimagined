@@ -24,7 +24,7 @@ function ResetPassword() {
   }
   return <div className="min-h-screen flex items-center justify-center bg-muted px-4">
     <form onSubmit={submit} className="w-full max-w-sm rounded-lg border bg-card p-8 grid gap-4">
-      <h1 className="font-serif text-2xl">Nové heslo</h1>
+      <h1 className="font-display text-2xl">Nové heslo</h1>
       <div className="grid gap-1.5"><Label htmlFor="pw">Nové heslo</Label><Input id="pw" type="password" autoComplete="new-password" value={password} onChange={e => setPassword(e.target.value)} /></div>
       <Button type="submit">Uložit heslo</Button>
     </form>

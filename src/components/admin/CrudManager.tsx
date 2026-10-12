@@ -120,7 +120,7 @@ export function CrudManager({ table, title, singular, fields, categoryKey, categ
 
   return <div>
     <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-      <h1 className="font-serif text-3xl">{title}</h1>
+      <h1 className="font-display text-3xl">{title}</h1>
       <Button onClick={openNew}><Plus />Přidat {singular}</Button>
     </div>
     <div className="flex flex-wrap gap-3 mb-4">
