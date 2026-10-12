@@ -10,33 +10,128 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DenniMenuRouteImport } from './routes/denni-menu'
+import { Route as GalerieRouteImport } from './routes/galerie'
+import { Route as KontaktRouteImport } from './routes/kontakt'
+import { Route as MenuRouteImport } from './routes/menu'
+import { Route as ONasRouteImport } from './routes/o-nas'
+import { Route as RezervaceRouteImport } from './routes/rezervace'
+import { Route as SpecialniNabidkaRouteImport } from './routes/specialni-nabidka'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DenniMenuRoute = DenniMenuRouteImport.update({
+  id: '/denni-menu',
+  path: '/denni-menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalerieRoute = GalerieRouteImport.update({
+  id: '/galerie',
+  path: '/galerie',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KontaktRoute = KontaktRouteImport.update({
+  id: '/kontakt',
+  path: '/kontakt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MenuRoute = MenuRouteImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ONasRoute = ONasRouteImport.update({
+  id: '/o-nas',
+  path: '/o-nas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RezervaceRoute = RezervaceRouteImport.update({
+  id: '/rezervace',
+  path: '/rezervace',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpecialniNabidkaRoute = SpecialniNabidkaRouteImport.update({
+  id: '/specialni-nabidka',
+  path: '/specialni-nabidka',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/denni-menu': typeof DenniMenuRoute
+  '/galerie': typeof GalerieRoute
+  '/kontakt': typeof KontaktRoute
+  '/menu': typeof MenuRoute
+  '/o-nas': typeof ONasRoute
+  '/rezervace': typeof RezervaceRoute
+  '/specialni-nabidka': typeof SpecialniNabidkaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/denni-menu': typeof DenniMenuRoute
+  '/galerie': typeof GalerieRoute
+  '/kontakt': typeof KontaktRoute
+  '/menu': typeof MenuRoute
+  '/o-nas': typeof ONasRoute
+  '/rezervace': typeof RezervaceRoute
+  '/specialni-nabidka': typeof SpecialniNabidkaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/denni-menu': typeof DenniMenuRoute
+  '/galerie': typeof GalerieRoute
+  '/kontakt': typeof KontaktRoute
+  '/menu': typeof MenuRoute
+  '/o-nas': typeof ONasRoute
+  '/rezervace': typeof RezervaceRoute
+  '/specialni-nabidka': typeof SpecialniNabidkaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/denni-menu'
+    | '/galerie'
+    | '/kontakt'
+    | '/menu'
+    | '/o-nas'
+    | '/rezervace'
+    | '/specialni-nabidka'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/denni-menu'
+    | '/galerie'
+    | '/kontakt'
+    | '/menu'
+    | '/o-nas'
+    | '/rezervace'
+    | '/specialni-nabidka'
+  id:
+    | '__root__'
+    | '/'
+    | '/denni-menu'
+    | '/galerie'
+    | '/kontakt'
+    | '/menu'
+    | '/o-nas'
+    | '/rezervace'
+    | '/specialni-nabidka'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DenniMenuRoute: typeof DenniMenuRoute
+  GalerieRoute: typeof GalerieRoute
+  KontaktRoute: typeof KontaktRoute
+  MenuRoute: typeof MenuRoute
+  ONasRoute: typeof ONasRoute
+  RezervaceRoute: typeof RezervaceRoute
+  SpecialniNabidkaRoute: typeof SpecialniNabidkaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +143,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/denni-menu': {
+      id: '/denni-menu'
+      path: '/denni-menu'
+      fullPath: '/denni-menu'
+      preLoaderRoute: typeof DenniMenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/galerie': {
+      id: '/galerie'
+      path: '/galerie'
+      fullPath: '/galerie'
+      preLoaderRoute: typeof GalerieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kontakt': {
+      id: '/kontakt'
+      path: '/kontakt'
+      fullPath: '/kontakt'
+      preLoaderRoute: typeof KontaktRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/menu': {
+      id: '/menu'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof MenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/o-nas': {
+      id: '/o-nas'
+      path: '/o-nas'
+      fullPath: '/o-nas'
+      preLoaderRoute: typeof ONasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rezervace': {
+      id: '/rezervace'
+      path: '/rezervace'
+      fullPath: '/rezervace'
+      preLoaderRoute: typeof RezervaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/specialni-nabidka': {
+      id: '/specialni-nabidka'
+      path: '/specialni-nabidka'
+      fullPath: '/specialni-nabidka'
+      preLoaderRoute: typeof SpecialniNabidkaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DenniMenuRoute: DenniMenuRoute,
+  GalerieRoute: GalerieRoute,
+  KontaktRoute: KontaktRoute,
+  MenuRoute: MenuRoute,
+  ONasRoute: ONasRoute,
+  RezervaceRoute: RezervaceRoute,
+  SpecialniNabidkaRoute: SpecialniNabidkaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
