@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
@@ -11,6 +12,9 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import { SiteHeader, SiteFooter } from "@/components/restaurant/shell";
+import { Toaster } from "@/components/ui/sonner";
+import { supabase } from "@/integrations/supabase/client";
+import { settingsQuery } from "@/content/repository";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
@@ -97,6 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
+  loader: ({ context }) => context.queryClient.ensureQueryData(settingsQuery).catch(() => undefined),
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
@@ -119,13 +124,22 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isAdmin = pathname.startsWith("/admin") || pathname.startsWith("/auth") || pathname.startsWith("/reset-password");
+  useEffect(() => {
+    const { data } = supabase.auth.onAuthStateChange((event) => {
+      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
+      router.invalidate();
+    });
+    return () => data.subscription.unsubscribe();
+  }, [router]);
 
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <SiteHeader />
-      <main><Outlet /></main>
-      <SiteFooter />
+      {isAdmin ? <Outlet /> : <><SiteHeader /><main><Outlet /></main><SiteFooter /></>}
+      <Toaster richColors position="top-right" />
     </QueryClientProvider>
   );
 }
