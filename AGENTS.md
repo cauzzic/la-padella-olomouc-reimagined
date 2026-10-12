@@ -10,6 +10,7 @@
 <!-- LOVABLE:END -->
 
 ## Restaurant architecture
-- Keep restaurant demo content and media references in a browser-safe typed data module, separate from route presentation, so an independent Olomouc content source can replace it later.
+- Editable content (menu items, weekly menus, offers) uses DB-shaped types in src/content/types.ts, visibility rules in src/content/rules.ts, and is read only through query options in src/content/repository.ts, so a future Olomouc database/admin replaces just the repository.
+- src/data/restaurant.ts holds only fixed design media and reference lists, not editable content.
 - Use leaf routes for public restaurant pages and a shared root header/footer; each leaf owns its metadata.
 - Reservations currently run only in transient React state and never submit or persist guest data, because this version is a frontend-only demo.
