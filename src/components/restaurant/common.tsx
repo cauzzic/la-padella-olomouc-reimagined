@@ -9,7 +9,7 @@ export function PageIntro({eyebrow,title,description}:{eyebrow:string;title:stri
 export function FoodCard({item}:{item:MenuItem}) {return <article className="food-card"><Link to="/menu" className="block">{item.image_url&&<div className="image-wrap"><img className="food-image" src={item.image_url} alt={item.name} loading="lazy" width={1024} height={1024}/></div>}<h3>{item.name}</h3></Link><p>{item.description}</p><div className="food-meta"><strong>{item.price} Kč</strong><Link to="/menu" aria-label={`Zobrazit ${item.name} v menu`}><ArrowUpRight size={18}/></Link></div></article>}
 
 const WEEKDAYS = ['Pondělí','Úterý','Středa','Čtvrtek','Pátek'];
-function DishRow({d}:{d:WeeklyMenuDish}) {return <div className="lunch-row"><div className="min-w-0"><h3>{d.name}</h3><p>{d.description}{d.allergens.length>0&&` · Alergeny: ${d.allergens.join(', ')}`}</p></div><strong>{d.price} Kč</strong></div>}
+function DishRow({d}:{d:WeeklyMenuDish}) {return <div className="lunch-row"><div className="min-w-0"><h3>{d.name}</h3><p>{d.description}{d.allergens.length>0&&` · Alergeny: ${d.allergens.join(', ')}`}</p></div>{d.price!=null&&<strong>{d.price} Kč</strong>}</div>}
 
 export function WeeklyMenuBlock({menu}:{menu:WeeklyMenu|null}) {
   if(!menu) return <div className="day-menu"><h2 className="display">Menu připravujeme</h2><p className="body-copy mt-3">Aktuální týdenní menu zatím není zveřejněno. Zastavte se brzy znovu.</p></div>;
