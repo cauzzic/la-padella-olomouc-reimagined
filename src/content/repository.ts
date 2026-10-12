@@ -1,11 +1,10 @@
-// Single swap point: replace these bodies with Lovable Cloud queries later; pages stay unchanged.
+// Single read path for public content: query options backed by the Olomouc database.
 import { queryOptions } from '@tanstack/react-query';
-import { groupMenu, pickActiveOffers, pickCurrentWeeklyMenu, pickFeatured, toISODate } from './rules';
-import { seedCategories, seedMenuItems, seedOffers, seedWeeklyMenus } from './seed';
+import { getCurrentWeeklyMenu, getDrinks, getFeatured, getMenu, getOffers, getSettings } from './public.functions';
 
-const today = () => toISODate(new Date());
-
-export const menuQuery = queryOptions({ queryKey: ['menu'], queryFn: async () => groupMenu(seedCategories, seedMenuItems) });
-export const featuredQuery = queryOptions({ queryKey: ['menu', 'featured'], queryFn: async () => pickFeatured(seedMenuItems, 4) });
-export const weeklyMenuQuery = queryOptions({ queryKey: ['weekly-menu', 'current'], queryFn: async () => pickCurrentWeeklyMenu(seedWeeklyMenus(), today()) });
-export const offersQuery = queryOptions({ queryKey: ['offers', 'active'], queryFn: async () => pickActiveOffers(seedOffers, today()) });
+export const menuQuery = queryOptions({ queryKey: ['menu'], queryFn: () => getMenu() });
+export const drinksQuery = queryOptions({ queryKey: ['drinks'], queryFn: () => getDrinks() });
+export const featuredQuery = queryOptions({ queryKey: ['menu', 'featured'], queryFn: () => getFeatured() });
+export const weeklyMenuQuery = queryOptions({ queryKey: ['weekly-menu', 'current'], queryFn: () => getCurrentWeeklyMenu() });
+export const offersQuery = queryOptions({ queryKey: ['offers', 'active'], queryFn: () => getOffers() });
+export const settingsQuery = queryOptions({ queryKey: ['settings'], queryFn: () => getSettings(), staleTime: 60_000 });
