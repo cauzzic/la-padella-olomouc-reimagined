@@ -141,6 +141,7 @@ export type Database = {
           name: string
           portion: string | null
           price: number
+          price_note: string | null
           sort_order: number
           updated_at: string
         }
@@ -157,6 +158,7 @@ export type Database = {
           name: string
           portion?: string | null
           price?: number
+          price_note?: string | null
           sort_order?: number
           updated_at?: string
         }
@@ -173,6 +175,7 @@ export type Database = {
           name?: string
           portion?: string | null
           price?: number
+          price_note?: string | null
           sort_order?: number
           updated_at?: string
         }
