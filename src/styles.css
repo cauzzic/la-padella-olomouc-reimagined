@@ -65,6 +65,10 @@
 .page-intro-veil {position:absolute;inset:0;background:oklch(.985 .005 90 / .62);}
 .page-intro > .wrap {position:relative;z-index:1;}
 .body-copy {font-size:14px;line-height:1.9;color:var(--muted-foreground);}
+/* Text over a background photo: heavier and darker so it stays readable, with a soft cream glow instead of a heavier veil. */
+.page-intro-image .eyebrow {font-size:12px;font-weight:800;letter-spacing:3.5px;text-shadow:0 0 14px oklch(.985 .005 90 / .95);}
+.page-intro-image h1 {font-weight:700;text-shadow:0 0 22px oklch(.985 .005 90 / .9),0 1px 0 oklch(.985 .005 90 / .7);}
+.page-intro-image .body-copy {font-weight:700;font-size:15px;color:var(--foreground);text-shadow:0 0 16px oklch(.985 .005 90 / .95);}
 .cta-band {background:var(--muted);padding:55px 0;}
 .cta-band .wrap {display:flex;justify-content:space-between;align-items:center;gap:24px;}
 .cta-band h2 {font-size:38px;}
