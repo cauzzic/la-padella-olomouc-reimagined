@@ -61,6 +61,11 @@
 .story-grid {display:grid;grid-template-columns:1fr 1fr;gap:76px;align-items:center;}
 .story-grid img {width:100%;aspect-ratio:1.1;object-fit:cover;border-radius:4px;}
 .story-grid h2 {font-size:48px;margin:20px 0;}
+.story-band {position:relative;background-size:cover;background-position:center;}
+.story-band::before {content:'';position:absolute;inset:0;background:oklch(.985 .005 90 / .58);}
+.story-band > .wrap {position:relative;z-index:1;}
+.story-panel {max-width:560px;background:oklch(.985 .005 90 / .88);border-radius:4px;padding:44px 46px;}
+@media(max-width:540px) {.story-panel {padding:28px 22px;}}
 .body-copy {font-size:14px;line-height:1.9;color:var(--muted-foreground);}
 .cta-band {background:var(--muted);padding:55px 0;}
 .cta-band .wrap {display:flex;justify-content:space-between;align-items:center;gap:24px;}
