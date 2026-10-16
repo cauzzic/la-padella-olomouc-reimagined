@@ -32,7 +32,6 @@ const groups: { title: string; fields: F[] }[] = [
   ] },
   { title: 'Kontakt a otevírací doba', fields: [
     { key: 'address', label: 'Adresa' },
-    { key: 'address_note', label: 'Doplnění adresy' },
     { key: 'phone', label: 'Telefon' },
     { key: 'email', label: 'E-mail' },
     { key: 'instagram_url', label: 'Odkaz na Instagram' },
