@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import type { MenuItem, Offer, WeeklyMenu, WeeklyMenuDish } from '@/content/types';
 import { formatDate } from '@/content/rules';
 
-export function PageIntro({eyebrow,title,description}:{eyebrow:string;title:string;description:string}) {return <div className="page-intro"><div className="wrap"><div className="eyebrow text-primary">{eyebrow}</div><h1 className="display">{title}</h1><p className="body-copy">{description}</p></div></div>}
+export function PageIntro({eyebrow,title,description,backgroundImage}:{eyebrow:string;title:string;description:string;backgroundImage?:string}) {return <div className="page-intro" style={backgroundImage?{backgroundImage:`url(${backgroundImage})`,backgroundSize:'cover',backgroundPosition:'center'}:undefined}>{backgroundImage&&<div className="page-intro-veil" aria-hidden="true"/>}<div className="wrap"><div className="eyebrow text-primary">{eyebrow}</div><h1 className="display">{title}</h1><p className="body-copy">{description}</p></div></div>}
 
 export function FoodCard({item}:{item:MenuItem}) {return <article className="food-card"><Link to="/menu" className="block">{item.image_url&&<div className="image-wrap"><img className="food-image" src={item.image_url} alt={item.name} loading="lazy" width={1024} height={1024}/></div>}<h3>{item.name}</h3></Link><p>{item.description}</p><div className="food-meta"><strong>{item.price_note||`${item.price} Kč`}</strong><Link to="/menu" aria-label={`Zobrazit ${item.name} v menu`}><ArrowUpRight size={18}/></Link></div></article>}
 
