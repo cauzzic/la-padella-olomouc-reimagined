@@ -16,6 +16,7 @@ import { Route as DenniMenuRouteImport } from './routes/denni-menu'
 import { Route as GalerieRouteImport } from './routes/galerie'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as MenuRouteImport } from './routes/menu'
+import { Route as NapojeRouteImport } from './routes/napoje'
 import { Route as ONasRouteImport } from './routes/o-nas'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as RezervaceRouteImport } from './routes/rezervace'
@@ -63,6 +64,11 @@ const KontaktRoute = KontaktRouteImport.update({
 const MenuRoute = MenuRouteImport.update({
   id: '/menu',
   path: '/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NapojeRoute = NapojeRouteImport.update({
+  id: '/napoje',
+  path: '/napoje',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ONasRoute = ONasRouteImport.update({
@@ -149,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/galerie': typeof GalerieRoute
   '/kontakt': typeof KontaktRoute
   '/menu': typeof MenuRoute
+  '/napoje': typeof NapojeRoute
   '/o-nas': typeof ONasRoute
   '/reset-password': typeof ResetPasswordRoute
   '/rezervace': typeof RezervaceRoute
@@ -171,6 +178,7 @@ export interface FileRoutesByTo {
   '/galerie': typeof GalerieRoute
   '/kontakt': typeof KontaktRoute
   '/menu': typeof MenuRoute
+  '/napoje': typeof NapojeRoute
   '/o-nas': typeof ONasRoute
   '/reset-password': typeof ResetPasswordRoute
   '/rezervace': typeof RezervaceRoute
@@ -194,6 +202,7 @@ export interface FileRoutesById {
   '/galerie': typeof GalerieRoute
   '/kontakt': typeof KontaktRoute
   '/menu': typeof MenuRoute
+  '/napoje': typeof NapojeRoute
   '/o-nas': typeof ONasRoute
   '/reset-password': typeof ResetPasswordRoute
   '/rezervace': typeof RezervaceRoute
@@ -218,6 +227,7 @@ export interface FileRouteTypes {
     | '/galerie'
     | '/kontakt'
     | '/menu'
+    | '/napoje'
     | '/o-nas'
     | '/reset-password'
     | '/rezervace'
@@ -240,6 +250,7 @@ export interface FileRouteTypes {
     | '/galerie'
     | '/kontakt'
     | '/menu'
+    | '/napoje'
     | '/o-nas'
     | '/reset-password'
     | '/rezervace'
@@ -262,6 +273,7 @@ export interface FileRouteTypes {
     | '/galerie'
     | '/kontakt'
     | '/menu'
+    | '/napoje'
     | '/o-nas'
     | '/reset-password'
     | '/rezervace'
@@ -286,6 +298,7 @@ export interface RootRouteChildren {
   GalerieRoute: typeof GalerieRoute
   KontaktRoute: typeof KontaktRoute
   MenuRoute: typeof MenuRoute
+  NapojeRoute: typeof NapojeRoute
   ONasRoute: typeof ONasRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
   RezervaceRoute: typeof RezervaceRoute
@@ -341,6 +354,13 @@ declare module '@tanstack/react-router' {
       path: '/menu'
       fullPath: '/menu'
       preLoaderRoute: typeof MenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/napoje': {
+      id: '/napoje'
+      path: '/napoje'
+      fullPath: '/napoje'
+      preLoaderRoute: typeof NapojeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/o-nas': {
@@ -491,6 +511,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalerieRoute: GalerieRoute,
   KontaktRoute: KontaktRoute,
   MenuRoute: MenuRoute,
+  NapojeRoute: NapojeRoute,
   ONasRoute: ONasRoute,
   ResetPasswordRoute: ResetPasswordRoute,
   RezervaceRoute: RezervaceRoute,
