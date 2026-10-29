@@ -2,7 +2,8 @@ import { useRef, useState } from 'react';
 import { ImagePlus, Loader2, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
-import { allergens } from '@/data/restaurant';
+import { allergens, allergensShort } from '@/data/restaurant';
+import { allergenIcons } from '@/components/restaurant/allergens';
 import { uploadImage, useSignedUrl } from './media';
 
 export function ImageField({ value, onChange }: { value: string | null; onChange: (path: string | null) => void }) {
@@ -28,10 +29,14 @@ export function ImageField({ value, onChange }: { value: string | null; onChange
 
 export function AllergenField({ value, onChange }: { value: number[]; onChange: (v: number[]) => void }) {
   const toggle = (n: number) => onChange(value.includes(n) ? value.filter(x => x !== n) : [...value, n].sort((a, b) => a - b));
-  return <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3">
-    {allergens.map((a, i) => <label key={a} className="flex items-center gap-2 text-xs cursor-pointer" title={a}>
-      <input type="checkbox" checked={value.includes(i + 1)} onChange={() => toggle(i + 1)} />
-      <span><strong>{i + 1}</strong> {a}</span>
-    </label>)}
+  return <div className="space-y-2">
+    <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+      {allergensShort.map((a, i) => { const Icon = allergenIcons[i]!; return <label key={i} className="flex items-center gap-2 text-xs cursor-pointer rounded-md border px-2 py-1.5 has-[:checked]:border-primary has-[:checked]:bg-primary/5" title={allergens[i]}>
+        <input type="checkbox" checked={value.includes(i + 1)} onChange={() => toggle(i + 1)} />
+        <span className="allergen-icon"><Icon strokeWidth={1.8} /></span>
+        <span><strong>{i + 1}</strong> {a}</span>
+      </label>; })}
+    </div>
+    <p className="text-xs text-muted-foreground">{value.length ? `Vybráno: ${value.join(', ')}` : 'Nic nevybráno – na webu se zobrazí „Informace o alergenech u obsluhy“.'}</p>
   </div>;
 }
