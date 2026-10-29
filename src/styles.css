@@ -131,3 +131,8 @@
 .allergen-legend li p.en {font-size:12.5px;font-style:italic;color:var(--muted-foreground);margin-top:2px;}
 .hero-actions {flex-wrap:wrap;}
 @media(max-width:768px){.allergen-legend ul {grid-template-columns:1fr;}}
+.menu-item h3 {overflow-wrap:anywhere;hyphens:auto;}
+.menu-item p {overflow-wrap:anywhere;}
+.mobile-nav a {padding-block:6px;}
+@media(max-width:540px){.menu-item {gap:12px;padding:20px 0;} .menu-item h3 {font-size:21px;line-height:1.2;}}
+@media(max-width:420px){.wrap {width:calc(100% - 32px);} .nav-reserve {display:none;} .mobile-toggle {margin-left:auto;} .hero-actions {flex-direction:column;align-items:stretch;width:100%;max-width:300px;} .hero-actions a {justify-content:center;min-height:44px;} .hero h1 {font-size:48px;} .topbar .wrap {gap:10px;} .topbar .wrap>span:last-child {text-align:right;}}
