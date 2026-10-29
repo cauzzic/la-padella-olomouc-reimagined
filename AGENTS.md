@@ -19,3 +19,4 @@
 - src/data/restaurant.ts holds only fixed design media and reference lists (allergen names, gallery).
 - Use leaf routes for public restaurant pages and a shared root header/footer (hidden on admin/auth); each leaf owns its metadata.
 - Reservations run only in transient React state and never persist guest data.
+- Public site URL and per-page SEO/OG head live in src/lib/seo.ts (SITE_URL); static images that must survive Cloudflare Pages hosting go in public/images, since Lovable asset URLs (/__l5e/) are not served there.
