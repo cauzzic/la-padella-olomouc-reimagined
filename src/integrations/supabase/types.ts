@@ -191,6 +191,7 @@ export type Database = {
       }
       offers: {
         Row: {
+          allergens: number[]
           created_at: string
           description: string
           id: string
@@ -205,6 +206,7 @@ export type Database = {
           valid_to: string | null
         }
         Insert: {
+          allergens?: number[]
           created_at?: string
           description?: string
           id?: string
@@ -219,6 +221,7 @@ export type Database = {
           valid_to?: string | null
         }
         Update: {
+          allergens?: number[]
           created_at?: string
           description?: string
           id?: string
