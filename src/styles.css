@@ -89,6 +89,8 @@
 .menu-item p {font-size:12px;line-height:1.8;color:var(--muted-foreground);margin-top:7px;}
 .menu-item small {display:block;font-size:10px;color:var(--muted-foreground);margin-top:8px;}
 .menu-item strong {font-size:17px;font-weight:500;white-space:nowrap;margin-top:5px;}
+.price-note {display:block;font-size:11px;line-height:1.6;color:var(--muted-foreground);margin-top:8px;font-weight:500;}
+.food-meta a {margin-left:auto;}
 .notice {font-size:11px;color:var(--muted-foreground);margin-top:30px;line-height:1.8;}
 .allergen-list {display:grid;grid-template-columns:repeat(3,1fr);gap:10px;font-size:12px;margin-top:20px;}
 .week-grid {display:grid;grid-template-columns:1fr 1fr;gap:30px;}
