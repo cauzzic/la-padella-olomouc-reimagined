@@ -7,7 +7,7 @@ import { PageIntro, ReservationCTA } from '@/components/restaurant/common';
 import { pageHead } from '@/data/restaurant';
 import { AllergenIcons, AllergenNote, AllergenLegend } from '@/components/restaurant/allergens';
 import { menuQuery } from '@/content/repository';
-export const Route=createFileRoute('/menu')({head:()=>pageHead('Jídelní lístek','Neapolská pizza, předkrmy, domácí těstoviny a dezerty s cenami a alergeny.'),loader:({context})=>context.queryClient.ensureQueryData(menuQuery),component:MenuPage,errorComponent:({error})=><p className="wrap py-20" role="alert">{String(error)}</p>,notFoundComponent:()=><p className="wrap py-20">Menu nenalezeno.</p>});
+export const Route=createFileRoute('/menu')({head:()=>pageHead('Jídelní lístek | La Padella Olomouc','Jídelní lístek La Padella Olomouc: pravá neapolská pizza, předkrmy, těstoviny a rizota, maso, ryby a dezerty s cenami a alergeny.','/menu'),loader:({context})=>context.queryClient.ensureQueryData(menuQuery),component:MenuPage,errorComponent:({error})=><p className="wrap py-20" role="alert">{String(error)}</p>,notFoundComponent:()=><p className="wrap py-20">Menu nenalezeno.</p>});
 function MenuPage(){
   const {data:menu}=useSuspenseQuery(menuQuery);
   const [cat,setCat]=useState('all');

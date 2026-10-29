@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { PageIntro, ReservationCTA } from '@/components/restaurant/common';
 import { pageHead } from '@/data/restaurant';
 import { drinksQuery } from '@/content/repository';
-export const Route=createFileRoute('/napoje')({head:()=>pageHead('Nápoje','Nápojový lístek La Padella Olomouc: aperitivy, spritz, víno, pivo, káva, destiláty a koktejly.'),loader:({context})=>context.queryClient.ensureQueryData(drinksQuery),component:DrinksPage,errorComponent:({error})=><p className="wrap py-20" role="alert">{String(error)}</p>,notFoundComponent:()=><p className="wrap py-20">Nápoje nenalezeny.</p>});
+export const Route=createFileRoute('/napoje')({head:()=>pageHead('Nápojový lístek | La Padella Olomouc','Nápojový lístek La Padella Olomouc: aperitivy, spritz, víno, pivo, káva, destiláty a koktejly.','/napoje'),loader:({context})=>context.queryClient.ensureQueryData(drinksQuery),component:DrinksPage,errorComponent:({error})=><p className="wrap py-20" role="alert">{String(error)}</p>,notFoundComponent:()=><p className="wrap py-20">Nápoje nenalezeny.</p>});
 function DrinksPage(){
   const {data:drinks}=useSuspenseQuery(drinksQuery);
   const [cat,setCat]=useState<string|null>(null);
