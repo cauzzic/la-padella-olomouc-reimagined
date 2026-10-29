@@ -83,14 +83,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "La Padella Olomouc" },
-      { name: "description", content: "Italská restaurace La Padella v Olomouci." },
-      
-      { property: "og:title", content: "La Padella Olomouc" },
-      { property: "og:description", content: "Italská restaurace La Padella v Olomouci." },
+      { title: "La Padella Olomouc | Pravá neapolská pizza a italská restaurace" },
+      { name: "description", content: "Objevte La Padella Olomouc – italskou restauraci s pravou neapolskou pizzou, těstovinami a dalšími italskými specialitami. Prohlédněte si jídelní lístek, denní menu a možnosti rezervace." },
+      { httpEquiv: "content-language", content: "cs-CZ" },
+      { property: "og:locale", content: "cs_CZ" },
+      { property: "og:site_name", content: "La Padella Olomouc" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      
     ],
     links: [
       {rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"},

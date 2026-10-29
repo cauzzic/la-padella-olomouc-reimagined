@@ -7,7 +7,7 @@ const EID = 'hydra-1307d44f-b1e7-429d-8e85-504d43b9c539';
 const TAG = `hors-${EID}`;
 const SCRIPT_ID = 'dish-reservation-widget';
 
-export const Route=createFileRoute('/rezervace')({head:()=>pageHead('Rezervace stolu','Rezervujte si stůl v La Padella Olomouc online přes rezervační systém DISH.'),component:Reservations});
+export const Route=createFileRoute('/rezervace')({head:()=>pageHead('Rezervace stolu | La Padella Olomouc','Rezervace stolu La Padella Olomouc online – vyberte počet osob, datum a čas v rezervačním systému DISH.','/rezervace'),component:Reservations});
 
 function DishWidget(){
   useEffect(()=>{
