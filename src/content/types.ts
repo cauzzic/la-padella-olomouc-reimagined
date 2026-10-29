@@ -28,7 +28,7 @@ export type Weekday = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 export type WeeklyMenuDish = { id: string; weekday: Weekday; kind: 'soup' | 'main'; name: string; description: string; price: number | null; allergens: number[]; sort_order: number };
 export type WeeklyMenu = { id: string; title?: string; valid_from: ISODate; valid_to: ISODate; note: string | null; is_published: boolean; dishes: WeeklyMenuDish[] };
 
-export type Offer = { id: string; title: string; label: string | null; description: string; price: number | null; image_url: string | null; valid_from: ISODate | null; valid_to: ISODate | null; is_active: boolean; sort_order: number };
+export type Offer = { id: string; title: string; label: string | null; description: string; price: number | null; allergens: number[]; image_url: string | null; valid_from: ISODate | null; valid_to: ISODate | null; is_active: boolean; sort_order: number };
 
 export type CategoryWithItems = MenuCategory & { items: MenuItem[] };
 

@@ -3,7 +3,7 @@ import { pickActiveOffers, pickCurrentWeeklyMenu, pickFeatured, groupMenu, group
 import type { MenuItem, Offer, WeeklyMenu } from '@/content/types';
 const item = (o: Partial<MenuItem>): MenuItem => ({ id: 'x', category_id: 'pizza', name: 'x', description: '', price: 1, price_note: null, image_url: null, allergens: [], portion: null, is_vegetarian: false, is_featured: false, sort_order: 0, is_active: true, ...o });
 const week = (from: string, to: string, pub = true): WeeklyMenu => ({ id: from, valid_from: from, valid_to: to, note: null, is_published: pub, dishes: [] });
-const offer = (o: Partial<Offer>): Offer => ({ id: 'x', title: 'x', label: null, description: '', price: null, image_url: null, valid_from: null, valid_to: null, is_active: true, sort_order: 0, ...o });
+const offer = (o: Partial<Offer>): Offer => ({ id: 'x', title: 'x', label: null, description: '', price: null, allergens: [], image_url: null, valid_from: null, valid_to: null, is_active: true, sort_order: 0, ...o });
 describe('content rules', () => {
   it('shows at most 4 featured dishes', () => { expect(pickFeatured(Array.from({ length: 6 }, (_, i) => item({ id: `${i}`, is_featured: true }))).length).toBe(4); });
   it('hides inactive items from the menu', () => { expect(groupMenu([{ id: 'pizza', name: 'Pizza', sort_order: 0, is_active: true }], [item({ id: 'a' }), item({ id: 'b', is_active: false })]).flatMap(c => c.items).map(i => i.id)).toEqual(['a']); });
