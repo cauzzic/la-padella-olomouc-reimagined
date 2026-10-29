@@ -42,6 +42,6 @@ export function restaurantJsonLd(s: { address?: string; phone?: string }) {
     menu: absoluteUrl('/menu'),
     acceptsReservations: true,
     ...(s.phone ? { telephone: s.phone } : {}),
-    address: { '@type': 'PostalAddress', streetAddress: 'Wurmova 1208/6', postalCode: '779 00', addressLocality: 'Olomouc', addressCountry: 'CZ' },
+    ...(s.address ? { address: { '@type': 'PostalAddress', streetAddress: s.address, addressLocality: 'Olomouc', addressCountry: 'CZ' } } : {}),
   };
 }
