@@ -1,0 +1,1 @@
+ALTER TABLE public.offers ADD COLUMN IF NOT EXISTS allergens smallint[] NOT NULL DEFAULT '{}'::smallint[];

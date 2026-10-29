@@ -88,7 +88,7 @@ export const getOffers = createServerFn({ method: 'GET' }).handler(async () => {
   const { data, error } = await client.from('offers').select('*').eq('is_active', true).order('sort_order');
   if (error) fail('offers', error);
   const urls = await sign(client, data.map(r => r.image_path));
-  const offers: Offer[] = data.map(r => ({ id: r.id, title: r.title, label: r.label, description: r.description, price: r.price == null ? null : Number(r.price), image_url: r.image_path ? urls.get(r.image_path) ?? null : null, valid_from: r.valid_from, valid_to: r.valid_to, is_active: r.is_active, sort_order: r.sort_order }));
+  const offers: Offer[] = data.map(r => ({ id: r.id, title: r.title, label: r.label, description: r.description, price: r.price == null ? null : Number(r.price), allergens: r.allergens ?? [], image_url: r.image_path ? urls.get(r.image_path) ?? null : null, valid_from: r.valid_from, valid_to: r.valid_to, is_active: r.is_active, sort_order: r.sort_order }));
   return pickActiveOffers(offers, todayPrague());
 });
 

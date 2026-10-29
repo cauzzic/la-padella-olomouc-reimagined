@@ -104,7 +104,7 @@ function WeeklyAdmin() {
             <Button size="icon" variant="ghost" aria-label="Odebrat jídlo" onClick={() => setEdit({ ...edit, dishes: dishes.filter((_, k) => k !== i) })}><Trash2 /></Button>
           </div>
           <Input placeholder="Popis" value={d.description} onChange={e => setDish(i, { description: e.target.value })} aria-label="Popis" />
-          <details><summary className="text-xs cursor-pointer text-muted-foreground">Alergeny: {d.allergens.length ? d.allergens.join(', ') : 'žádné'}</summary><div className="pt-2"><AllergenField value={d.allergens} onChange={v => setDish(i, { allergens: v })} /></div></details>
+          <details className="rounded-md border px-3 py-2"><summary className="text-sm font-medium cursor-pointer">Alergeny {d.allergens.length ? `(${d.allergens.join(', ')})` : '– klikněte pro výběr'}</summary><div className="pt-2"><AllergenField value={d.allergens} onChange={v => setDish(i, { allergens: v })} /></div></details>
         </div>)}
       </section>)}
       <div className="flex gap-2 sticky bottom-0 bg-muted/80 py-3"><Button onClick={save} disabled={saving}>{saving && <Loader2 className="animate-spin" />}Uložit menu</Button><Button variant="outline" onClick={() => setEdit(null)}>Zrušit</Button></div>
