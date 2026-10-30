@@ -53,7 +53,7 @@ async function loadItems(client: Db): Promise<MenuItem[]> {
   const { data, error } = await client.from('menu_items').select('*').eq('is_active', true).order('sort_order');
   if (error) fail('menu_items', error);
   const urls = await sign(client, data.map(r => r.image_path));
-  return data.map(r => ({ id: r.id, category_id: r.category_id, name: r.name, description: r.description, price: Number(r.price), price_note: r.price_note ?? null, image_url: r.image_path ? urls.get(r.image_path) ?? null : null, allergens: r.allergens, portion: r.portion, is_vegetarian: r.is_vegetarian, is_featured: r.is_featured, sort_order: r.sort_order, is_active: r.is_active }));
+  return data.map(r => ({ id: r.id, category_id: r.category_id, name: r.name, description: r.description, price: r.price == null ? null : Number(r.price), price_note: r.price_note ?? null, image_url: r.image_path ? urls.get(r.image_path) ?? null : null, allergens: r.allergens, portion: r.portion, is_vegetarian: r.is_vegetarian, is_featured: r.is_featured, sort_order: r.sort_order, is_active: r.is_active }));
 }
 
 export const getMenu = createServerFn({ method: 'GET' }).handler(async () => {

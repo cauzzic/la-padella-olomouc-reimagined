@@ -9,7 +9,7 @@ export type MenuItem = {
   category_id: string;
   name: string;
   description: string;
-  price: number;
+  price: number | null;
   price_note: string | null;
   image_url: string | null;
   allergens: number[];
