@@ -7,6 +7,7 @@ const offer = (o: Partial<Offer>): Offer => ({ id: 'x', title: 'x', label: null,
 describe('content rules', () => {
   it('shows at most 4 featured dishes', () => { expect(pickFeatured(Array.from({ length: 6 }, (_, i) => item({ id: `${i}`, is_featured: true }))).length).toBe(4); });
   it('hides inactive items from the menu', () => { expect(groupMenu([{ id: 'pizza', name: 'Pizza', sort_order: 0, is_active: true }], [item({ id: 'a' }), item({ id: 'b', is_active: false })]).flatMap(c => c.items).map(i => i.id)).toEqual(['a']); });
+  it('keeps a dish that has no price', () => { expect(groupMenu([{ id: 'pizza', name: 'Pizza', sort_order: 0, is_active: true }], [item({ id: 'nocena', price: null })]).flatMap(c => c.items).map(i => i.id)).toEqual(['nocena']); });
   it('hides empty drink categories', () => { expect(groupDrinks([{ id: 'pivo', name: 'Pivo', sort_order: 0, is_active: true }], [])).toEqual([]); });
   it('does not show an expired weekly menu as current', () => { expect(pickCurrentWeeklyMenu([week('2026-10-05', '2026-10-09')], '2026-10-12')).toBeNull(); });
   it('does not show a menu prepared for the future', () => { expect(pickCurrentWeeklyMenu([week('2026-10-19', '2026-10-23')], '2026-10-16')).toBeNull(); });
