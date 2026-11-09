@@ -20,7 +20,7 @@ export type Field = {
   options?: { value: string; label: string }[];
 };
 type Props = {
-  table: 'menu_items' | 'drinks' | 'menu_categories' | 'drink_categories' | 'offers';
+  table: 'menu_items' | 'drinks' | 'menu_categories' | 'drink_categories' | 'offers' | 'gallery_photos';
   title: string; singular: string; fields: Field[];
   categoryKey?: string; categories?: { value: string; label: string }[];
   defaults: Record<string, unknown>;

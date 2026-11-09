@@ -1,7 +1,7 @@
 import { createFileRoute, Link, Outlet, useNavigate } from '@tanstack/react-router';
 import { useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
-import { CalendarDays, ExternalLink, FileText, FolderTree, LayoutDashboard, LogOut, Menu as MenuIcon, Sparkles, UtensilsCrossed, Users, Wine, GlassWater } from 'lucide-react';
+import { CalendarDays, ExternalLink, FileText, FolderTree, LayoutDashboard, LogOut, Menu as MenuIcon, Sparkles, UtensilsCrossed, Users, Wine, GlassWater, Images } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
 
@@ -23,6 +23,7 @@ const nav = [
   { to: '/admin/kategorie-napoju', label: 'Kategorie nápojů', icon: GlassWater },
   { to: '/admin/tydenni-menu', label: 'Týdenní menu', icon: CalendarDays },
   { to: '/admin/nabidky', label: 'Speciální nabídky', icon: Sparkles },
+  { to: '/admin/galerie', label: 'Galerie', icon: Images },
   { to: '/admin/obsah', label: 'Obsah webu', icon: FileText },
 ] as const;
 

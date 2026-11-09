@@ -101,3 +101,12 @@ export const getSettings = createServerFn({ method: 'GET' }).handler(async (): P
   for (const k of SETTINGS_IMAGE_KEYS) s[k] = s[k] ? urls.get(s[k]!) ?? '' : '';
   return s;
 });
+
+export type GalleryPhoto = { id: string; title: string; category: 'food' | 'restaurant'; image_url: string | null; static_path: string | null };
+export const getGallery = createServerFn({ method: 'GET' }).handler(async (): Promise<GalleryPhoto[]> => {
+  const client = db();
+  const { data, error } = await client.from('gallery_photos').select('id,title,category,image_path').eq('is_active', true).order('sort_order');
+  if (error) fail('gallery_photos', error);
+  const urls = await sign(client, data.map(r => r.image_path?.startsWith('static:') ? null : r.image_path));
+  return data.filter(r => r.image_path).map(r => ({ id: r.id, title: r.title, category: r.category === 'restaurant' ? 'restaurant' : 'food', image_url: urls.get(r.image_path!) ?? null, static_path: r.image_path!.startsWith('static:') ? r.image_path : null }));
+});
