@@ -35,6 +35,7 @@ const groups: { title: string; fields: F[] }[] = [
     { key: 'phone', label: 'Telefon' },
     { key: 'email', label: 'E-mail' },
     { key: 'instagram_url', label: 'Odkaz na Instagram' },
+    { key: 'facebook_url', label: 'Odkaz na Facebook' },
     { key: 'opening_hours', label: 'Otevírací doba', type: 'textarea', hint: 'Každý řádek: Dny | Čas, např. „Pondělí–pátek | 11:00–22:00“' },
     { key: 'lunch_hours', label: 'Čas denního menu' },
     { key: 'contact_text', label: 'Text na stránce Kontakt', type: 'textarea' },
