@@ -23,6 +23,7 @@ import { Route as RezervaceRouteImport } from './routes/rezervace'
 import { Route as SpecialniNabidkaRouteImport } from './routes/specialni-nabidka'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminGalerieRouteImport } from './routes/_authenticated/admin.galerie'
 import { Route as AuthenticatedAdminJidlaRouteImport } from './routes/_authenticated/admin.jidla'
 import { Route as AuthenticatedAdminKategorieJidelRouteImport } from './routes/_authenticated/admin.kategorie-jidel'
 import { Route as AuthenticatedAdminKategorieNapojuRouteImport } from './routes/_authenticated/admin.kategorie-napoju'
@@ -101,6 +102,12 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminGalerieRoute =
+  AuthenticatedAdminGalerieRouteImport.update({
+    id: '/galerie',
+    path: '/galerie',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminJidlaRoute = AuthenticatedAdminJidlaRouteImport.update({
   id: '/jidla',
   path: '/jidla',
@@ -161,6 +168,7 @@ export interface FileRoutesByFullPath {
   '/rezervace': typeof RezervaceRoute
   '/specialni-nabidka': typeof SpecialniNabidkaRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/admin/galerie': typeof AuthenticatedAdminGalerieRoute
   '/admin/jidla': typeof AuthenticatedAdminJidlaRoute
   '/admin/kategorie-jidel': typeof AuthenticatedAdminKategorieJidelRoute
   '/admin/kategorie-napoju': typeof AuthenticatedAdminKategorieNapojuRoute
@@ -183,6 +191,7 @@ export interface FileRoutesByTo {
   '/reset-password': typeof ResetPasswordRoute
   '/rezervace': typeof RezervaceRoute
   '/specialni-nabidka': typeof SpecialniNabidkaRoute
+  '/admin/galerie': typeof AuthenticatedAdminGalerieRoute
   '/admin/jidla': typeof AuthenticatedAdminJidlaRoute
   '/admin/kategorie-jidel': typeof AuthenticatedAdminKategorieJidelRoute
   '/admin/kategorie-napoju': typeof AuthenticatedAdminKategorieNapojuRoute
@@ -208,6 +217,7 @@ export interface FileRoutesById {
   '/rezervace': typeof RezervaceRoute
   '/specialni-nabidka': typeof SpecialniNabidkaRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/admin/galerie': typeof AuthenticatedAdminGalerieRoute
   '/_authenticated/admin/jidla': typeof AuthenticatedAdminJidlaRoute
   '/_authenticated/admin/kategorie-jidel': typeof AuthenticatedAdminKategorieJidelRoute
   '/_authenticated/admin/kategorie-napoju': typeof AuthenticatedAdminKategorieNapojuRoute
@@ -233,6 +243,7 @@ export interface FileRouteTypes {
     | '/rezervace'
     | '/specialni-nabidka'
     | '/admin'
+    | '/admin/galerie'
     | '/admin/jidla'
     | '/admin/kategorie-jidel'
     | '/admin/kategorie-napoju'
@@ -255,6 +266,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/rezervace'
     | '/specialni-nabidka'
+    | '/admin/galerie'
     | '/admin/jidla'
     | '/admin/kategorie-jidel'
     | '/admin/kategorie-napoju'
@@ -279,6 +291,7 @@ export interface FileRouteTypes {
     | '/rezervace'
     | '/specialni-nabidka'
     | '/_authenticated/admin'
+    | '/_authenticated/admin/galerie'
     | '/_authenticated/admin/jidla'
     | '/_authenticated/admin/kategorie-jidel'
     | '/_authenticated/admin/kategorie-napoju'
@@ -405,6 +418,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/galerie': {
+      id: '/_authenticated/admin/galerie'
+      path: '/galerie'
+      fullPath: '/admin/galerie'
+      preLoaderRoute: typeof AuthenticatedAdminGalerieRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/jidla': {
       id: '/_authenticated/admin/jidla'
       path: '/jidla'
@@ -465,6 +485,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminGalerieRoute: typeof AuthenticatedAdminGalerieRoute
   AuthenticatedAdminJidlaRoute: typeof AuthenticatedAdminJidlaRoute
   AuthenticatedAdminKategorieJidelRoute: typeof AuthenticatedAdminKategorieJidelRoute
   AuthenticatedAdminKategorieNapojuRoute: typeof AuthenticatedAdminKategorieNapojuRoute
@@ -477,6 +498,7 @@ interface AuthenticatedAdminRouteChildren {
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminGalerieRoute: AuthenticatedAdminGalerieRoute,
   AuthenticatedAdminJidlaRoute: AuthenticatedAdminJidlaRoute,
   AuthenticatedAdminKategorieJidelRoute: AuthenticatedAdminKategorieJidelRoute,
   AuthenticatedAdminKategorieNapojuRoute:

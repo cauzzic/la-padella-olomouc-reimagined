@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
+import { resolvePhoto } from '@/data/restaurant';
 
 export const BUCKET = 'media';
 
@@ -15,11 +16,12 @@ export async function uploadImage(file: File): Promise<string> {
 
 /** Deletes a stored photo only when no dish, drink, offer or site setting still uses it. */
 export async function releaseImage(path: string | null | undefined): Promise<void> {
-  if (!path) return;
+  if (!path || path.startsWith('static:')) return;
   const checks = await Promise.all([
     supabase.from('menu_items').select('id', { count: 'exact', head: true }).eq('image_path', path),
     supabase.from('drinks').select('id', { count: 'exact', head: true }).eq('image_path', path),
     supabase.from('offers').select('id', { count: 'exact', head: true }).eq('image_path', path),
+    supabase.from('gallery_photos').select('id', { count: 'exact', head: true }).eq('image_path', path),
     supabase.from('site_settings').select('key', { count: 'exact', head: true }).eq('value', path),
   ]);
   if (checks.some(c => c.error || (c.count ?? 0) > 0)) return;
@@ -31,6 +33,7 @@ export function useSignedUrl(path: string | null | undefined) {
   useEffect(() => {
     let live = true;
     if (!path) { setUrl(null); return; }
+    if (path.startsWith('static:')) { setUrl(resolvePhoto(path)); return; }
     supabase.storage.from(BUCKET).createSignedUrl(path, 3600).then(({ data }) => { if (live) setUrl(data?.signedUrl ?? null); });
     return () => { live = false; };
   }, [path]);
